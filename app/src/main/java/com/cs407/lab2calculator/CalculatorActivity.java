@@ -15,7 +15,7 @@ public class CalculatorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calculator);
         textView = (TextView) findViewById(R.id.textView);
         Intent intent = getIntent();
-        int result = intent.getIntExtra("message", 0);
+        double result = intent.getDoubleExtra("message", 0);
         textView.setText("The answer is:  " + result);
     }
 }
