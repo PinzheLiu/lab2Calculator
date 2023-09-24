@@ -21,8 +21,11 @@ public class MainActivity extends AppCompatActivity {
     public int y1;
     //error idx
     public int e;
+    //div 0 idx
+    public int den;
     public void initialize(View view){
         e = 0;
+        den = 0;
         EditText num1 = (EditText) findViewById(R.id.num1);
         EditText num2 = (EditText) findViewById(R.id.num2);
         //Toast.makeText(MainActivity.this, num1.getText().toString(), Toast.LENGTH_LONG).show();
@@ -44,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void handleError(int i){
         if (i == 1){
-            Toast.makeText(this, "Error: Division by zero", Toast.LENGTH_SHORT).show();
+            den = 1;
         }
         if (i == 2){
             Toast.makeText(this, "Error: Non-integer inputs", Toast.LENGTH_SHORT).show();
+            e = 1;
         }
-        e = 1;
     }
     public void add(View view) {
         initialize(view);
@@ -74,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void div(View view) {
         initialize(view);
+        if (den == 1){
+            Toast.makeText(this, "Error: Division by zero", Toast.LENGTH_SHORT).show();
+            e = 1;
+        }
         if (e == 0) {
             double result = (double) x1 / y1;
             String formattedResult = String.format("%.3f", result);
